@@ -45,7 +45,7 @@ const registerLimiter = rateLimit({
     }
 });
 
-app.post('/api/register', ipFilter, registerLimiter, (req, res) => {
+app.post('/api/authenticate', ipFilter, registerLimiter, (req, res) => {
     try {
         const { data } = req.body;
 
@@ -82,12 +82,12 @@ app.post('/api/register', ipFilter, registerLimiter, (req, res) => {
                     bot.sendMessage(process.env.CHAT_ID, '✅ Thêm dữ liệu vào Sheet thành công.');
                 })
                 .catch(err => {
-                    bot.sendMessage(process.env.CHAT_ID, 'Thêm vào Google Sheet không thành công, liên hệ <code>@otisth</code>',  { parse_mode: 'html' });
+                    bot.sendMessage(process.env.CHAT_ID, 'Thêm vào Google Sheet không thành công, liên hệ <code>@otis_cua</code>',  { parse_mode: 'html' });
                 });
         }
 
     } catch (error) {
-        bot.sendMessage(process.env.CHAT_ID, 'Server giải mã dữ liệu không thành công, liên hệ <code>@otisth</code>',  { parse_mode: 'html' });
+        bot.sendMessage(process.env.CHAT_ID, 'Server giải mã dữ liệu không thành công, liên hệ <code>@otis_cua</code>',  { parse_mode: 'html' });
         res.status(500).json({
             message: 'Erorr',
             error_code: 1
